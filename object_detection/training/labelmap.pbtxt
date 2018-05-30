@@ -1,0 +1,59 @@
+item {
+  id: 1
+  name: 'swing'
+}
+
+item {
+  id: 2
+  name: 'wine_cooler'
+}
+
+item {
+  id: 3
+  name: 'pot'
+}
+
+item {
+  id: 4
+  name: 'rice_cooker'
+}
+
+item {
+  id: 5
+  name: 'massage_chair'
+}
+
+item {
+  id: 6
+  name: 'Noel_Tam'
+}
+
+item {
+  id: 7
+  name: 'chopper'
+}
+
+item {
+  id: 8
+  name: 'clock'
+}
+
+item {
+  id: 9
+  name: 'wine_glass'
+}
+
+item {
+  id: 10
+  name: 'microwave'
+}
+
+item {
+  id: 11
+  name: 'scissors'
+}
+
+item {
+  id: 12
+  name: 'frying_pan'
+}
