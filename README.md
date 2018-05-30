@@ -195,7 +195,7 @@ There is a problem. The classification + object detection on video stream is per
 ![alt text](https://i.imgur.com/cX1WlVR.jpg)
 
 ### Part 4: Put everything together.
-If you have not spotted, for Part 2 & 3, the model I was using is a pre-trained model. Where is my 12x classes of household products which I trained in Part 1? Well, I'm not going to use the model in Part 1 created via Keras, because accuracy is only 85%. Not bad, but not good enough. That's why I do Part 2 and 3. But we can fine tune the existing pre-train model. There are a list of model selection from [model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md)
+If you have not spotted, for Part 2 & 3, the model I was using is a pre-trained model. Where is my 12x classes of household products which I trained in Part 1? Well, I'm not going to use the model in Part 1 created via Keras, because accuracy is only 85%. Not bad, but not good enough. That's why I do Part 2 and 3, where tensorflow object detection api allows fine tune the existing pre-train model. There are a list of model selection from [model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md)
 
 Some of the most relevant system types today are Faster R-CNN, R-FCN, Multibox Single Shot Detector (SSD) and YOLO (You Only Look Once).
 
@@ -300,6 +300,11 @@ Run it in terminal.
 ```
 (tensorflow1) C:\tensorflow1\models\research\object_detection>python Object_detection_webcam.py
 ```
+
+##### Demo on 12x household products.
+
+[![IMAGE ALT TEXT HERE](https://i.imgur.com/LQrnnVS.jpg)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+
 You are looking at Fast RCNN model on my custom image and labels and some mock-up advertising prices and promotion.
 My project is complete here. YOLO is extra.
 
