@@ -11,10 +11,10 @@ Many of us do shopping regularly. Wouldn't it be awesome if you could pick up yo
 ### Overview
 I will break this up into 4 parts:
 1) Image classification using Keras. This trains a model to classify all 20,000 images of household product into its labels.
-2) Tensorflow Object Detection API. This locate the object and draws the bounding box around it.
+2) Transfer Learning + Tensorflow Object Detection API. This locate the object and draws the bounding box around it.
 3) OpenCV for video streaming on webcam.
-4) Put all the above together.
-5) Yolo demonstration
+4) Put all the above together + Demo.
+5) Bonus - Yolo demonstration
 
 ![alt text](https://i.imgur.com/dj6ZReY.jpg)
 
@@ -23,7 +23,7 @@ Before I jump into the coding. There is a few concept you had to know.
 - Images are matrix of pixel values. 
 
 ![alt text](https://i.imgur.com/qFIfB2z.gif)  
-- A greyscale (black and white) has one number for each pixel which describes the brightness of that pixel. The numbers range from 0=black to 1=white to indicate how bright that part of the photo should be. A standard size for a photo is 1000 x 667 pixels is height x width, represented in atrix (1000 x 667 x 1), where 1 means greyscale. 
+- A greyscale (black and white) has one number for each pixel which describes the brightness of that pixel. The numbers range from 0=black to 1=white to indicate how bright that part of the photo should be. A standard size for a photo is 1000 x 667 pixels is height x width, represented in matrix (1000 x 667 x 1), where 1 means greyscale. 
 - For a colour photograph, each pixel is described by three numbers, ranging from 0 to 1, that describe the redness, blueness and greenness of that pixel. The photo is described by a 3D array (a tensor) of size 1000 x 667 x 3.
 ![alt text](https://i.imgur.com/4VaJwVv.png)    
 - Keras is a high-level neural networks API, written in Python and capable of running on top of TensorFlow. I'll be using Keras to do most of the layer construction.
@@ -43,7 +43,7 @@ valid_batches = ImageDataGenerator(rescale = 1./255).flow_from_directory(valid_p
                                                          batch_size = 20)
 ```
 
-ImageDataGenerator() is a keras object which generates batches of tensor image data. You can also augment the images in order to increase the number of images for training. Meaning, if take for example zoom_range=0.2, you have just doubled your number of images with the new set zoomed by 20%. This is very useful if your train image is less than 200. You may flip, shear, rescale and many more written in the documentation. [https://keras.io/preprocessing/image/]
+ImageDataGenerator() is a keras object which generates batches of tensor image data. For CNN, an input must be a 4-D tensor [batch_size, width, height, channels], so each image is a 3-D sub-tensor. ImageDataGenerator() will turn images to matrix in backend. You can also augment the images in order to increase the number of images for training. Meaning, if take for example zoom_range=0.2, you have just doubled your number of images with the new set zoomed by 20%. This is very useful if your train image is less than 200. You may flip, shear, rescale and many more written in the documentation. [https://keras.io/preprocessing/image/]
 
 ```
 # Default values in ImageDataGenerator() class
@@ -51,13 +51,13 @@ keras.preprocessing.image.ImageDataGenerator(featurewise_center=False, samplewis
 ```
 
 
-flow_from_directory() is where you tell keras where is your images, located at which path. Target_size defines the size of image in matrix form. classes turns the labels to one-hot-encoded based. chopper=[0,0,1,0...0], clock=[1,0,0...0]. Batch_size defines how many images to feed into the network at ones. 
+flow_from_directory() is where you tell keras where is your images, located at which path. Also for training all images must be of the same size - WIDTH and HEIGHT, therefore, Target_size defines the size of image in matrix form. 'Classes' turns the labels to one-hot-encoded based. chopper=[0,0,1,0...0], clock=[1,0,0...0]. Batch_size defines how many images to feed into the network at ones, and if you recalled previously, this is the 4th Dimension in Tensor. 
 
 ### Convolution Neural Network (CNN)
 CNN is a technique use to classifiy images via a series of deep learning layers.
 
 ```
-# Simplified version of CNN
+# Below is a Simplified version of CNN
 classifier = Sequential()
 classifier.add(Conv2D(32, (3, 3), input_shape = (128, 128, 3), activation = 'relu'))  
 classifier.add(MaxPooling2D(pool_size = (2, 2)))
@@ -66,6 +66,12 @@ classifier.add(Dense(units = 128, activation = 'relu'))
 classifier.add(Dense(units = 12, activation = 'softmax'))  
 classifier.compile(optimizer = 'adam', loss = 'categorical_crossentropy', metrics = ['accuracy'])
 ```
+Question: How do I design my model?
+Answer: 1) borrow architecture from other models (github + youtube + blogs + DS online course) 
+        2) Experience with my previous models. (based on Accuracy score + Confusion Matrix)
+        3) trial-and-error (no gridsearch)
+
+Below I will explain what each layer is doing:
 
 - Sequential() tells keras that we will be buliding sequential layers for our model. [https://keras.io/getting-started/sequential-model-guide/].
 - Conv2D() is our 1st layer. 32 is the number of filters. You can use other numbers. But I usually see from other practitioners, they usually used multiples of 32 (example 64, 128, 256, etc..). (3,3) is the filter matrix size. Input_shape 128 x 128, is the same as previously mentioned about Target Size. Next is the '3' meaning we are dealing with RGB. And lastly 'relu' the activation method.
@@ -93,11 +99,25 @@ The same concept as before applies but this time its a 2x2 matrix, stride across
 
 ![alt text](https://i.imgur.com/ujndZCj.jpg)      
 
-- Dense() Layers. The 2x dense forms the Fully Connected Layer. With the input layer having 128 nodes and the Output layer stating the number of classes we want to predict, where in our class is 12 class. ReLU activations will once again be used for all layers except the output dense layer, which will use a softmax activation (for purposes of probabilistic classification). I choose softmax at last node because it is usually used for multi-classification, probabiliies sum will be 1, so the high value will have the higher probability than other values. Yes, the final output is in a form of probability, since the network is predicting based on the features. So in simplest explaination, when model sees 4x wheels, some windows, boot and headlights, its probably a CAR. 
+- Dense() Layers. The 2x dense forms the Fully Connected Layer. With the input layer having 128 nodes and the Output layer stating the number of classes we want to predict, where in our class is 12 class. ReLU activations will once again be used for all layers. The output dense layer softmax activation (for purposes of probabilistic classification). 
+
+- Softmax activaton: I choose softmax at last node because it is usually used for multi-classification, probabiliies sum will be 1, so the high value will have the higher probability than other values. Softmax Activation function highlights the largest input and suppresses all the significantly smaller ones. Yes, the final output is in a form of probability, since the network is predicting based on the features. So in simplest explaination, when model sees 4x wheels, some windows, boot and headlights, its probably a CAR. 
+
+![alt text](https://i.imgur.com/SA4cJoF.png)
+
+##### Summary of my final CNN
 
 ![alt text](https://i.imgur.com/EGmKvar.jpg)     
 
 - The above is the summary of our model. The Param here means the number of trainable nodes in each layer. Then below are the total of trainable nodes. The larger the number, the longer it takes to do training. I have a GTX1060 GPU, it took me about 3hrs to train 20,000 of 12x classes into its labels. You should use cloud if you do not have a GPU of the similar grade as mine. I have been using AWS EC2 (Amazon Web Services)
+
+##### Accuarcy scores
+![alt text](https://i.imgur.com/PIb1wBn.jpg)   ![alt text](https://i.imgur.com/It5siXG.jpg)
+![alt text](https://i.imgur.com/PPpyX85.jpg)   ![alt text](https://i.imgur.com/U63wZCr.jpg
+
+##### Testing the saved model.
+Now that the model is trained. I will to test it using images that the model has never seen before.
+
 
 ### Part 2: Tensorflow Object Detection API
 The real world is very busy with multiple activities happening at the same time.  We are not just classifying 1x single object, rather multiple overlapping objects with different backgrounds. And in order to see the relationship between different objects, in a single photo, we need to draw a bounding boxes around them. Therefore, our CNN had to predict, many different labels as well as their X Y coordinates of its respective bounding box, all at once.
