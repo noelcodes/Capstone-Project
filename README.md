@@ -111,11 +111,14 @@ The same concept as before applies but this time its a 2x2 matrix, stride across
 
 - The above is the summary of our model. The Param here means the number of trainable nodes in each layer. Then below are the total of trainable nodes. The larger the number, the longer it takes to do training. I have a GTX1060 GPU, it took me about 3hrs to train 20,000 of 12x classes into its labels. You should use cloud if you do not have a GPU of the similar grade as mine. I have been using AWS EC2 (Amazon Web Services)
 
-##### Accuarcy scores
-![alt text](https://i.imgur.com/PIb1wBn.jpg)   
+#### Accuarcy scores:
+![alt text](https://i.imgur.com/PIb1wBn.jpg)  
+
 ![alt text](https://i.imgur.com/It5siXG.jpg)
-![alt text](https://i.imgur.com/PPpyX85.jpg)   
-![alt text](https://i.imgur.com/U63wZCr.jpg
+
+![alt text](https://i.imgur.com/PPpyX85.jpg)  
+
+![alt text](https://i.imgur.com/U63wZCr.jpg)
 
 ##### Testing the saved model.
 Now that the model is trained. I will to test it using images that the model has never seen before.
