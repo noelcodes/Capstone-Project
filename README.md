@@ -111,16 +111,19 @@ The same concept as before applies but this time its a 2x2 matrix, stride across
 
 - The above is the summary of our model. The Param here means the number of trainable nodes in each layer. Then below are the total of trainable nodes. The larger the number, the longer it takes to do training. I have a GTX1060 GPU, it took me about 3hrs to train 20,000 of 12x classes into its labels. You should use cloud if you do not have a GPU of the similar grade as mine. I have been using AWS EC2 (Amazon Web Services)
 
-#### Accuarcy scores:
-![alt text](https://i.imgur.com/PIb1wBn.jpg)  
-
 ![alt text](https://i.imgur.com/It5siXG.jpg)
-
-![alt text](https://i.imgur.com/PPpyX85.jpg)  
 
 ![alt text](https://i.imgur.com/U63wZCr.jpg)
 
-##### Testing the saved model.
+As soon as the accuracy hover around close to 1, and the loss hover near 0, the training is sufficent. Training can stop.
+
+#### Test metrics:
+This 1st diagram shows the confusion metrics. Each category, we test the model with 10 images. In the diagram, the objective is to get a diagonal number all 10. As you can see, most of the items are classified correctly, except for pot. Pot are sometimes predicted as a Clock or a Rice_cooker. Reason? CNN takes the features for prediction, pot and clock and rice_cooker have certain feature that are really similar, such as its curve lines and shape. To overcome this, a better network design is needed, or training for longer period of time, or add more images for training. 
+![alt text](https://i.imgur.com/PIb1wBn.jpg)  
+
+![alt text](https://i.imgur.com/PPpyX85.jpg)  
+
+##### Testing the saved model. Live demo. Recorded on video.
 Now that the model is trained. I will to test it using images that the model has never seen before.
 
 
