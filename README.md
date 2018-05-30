@@ -128,12 +128,6 @@ Now that the model is trained. I will to test it using images that the model has
 
 [![LIVE DEMO](https://i.imgur.com/bJixWTi.jpg)](https://youtu.be/r_jMNsYlsbY)
 
-
-<div align="center">
-  <a href="https://youtu.be/r_jMNsYlsbY"><img src="https://i.imgur.com/bJixWTi.jpg" alt="IMAGE ALT TEXT"></a>
-</div>
-
-
 ### Part 2: Tensorflow Object Detection API
 The real world is very busy with multiple activities happening at the same time.  We are not just classifying 1x single object, rather multiple overlapping objects with different backgrounds. And in order to see the relationship between different objects, in a single photo, we need to draw a bounding boxes around them. Therefore, our CNN had to predict, many different labels as well as their X Y coordinates of its respective bounding box, all at once.
 
