@@ -126,8 +126,7 @@ This 1st diagram shows the confusion metrics. Each category, we test the model w
 ##### Testing the saved model. Live demo. Recorded on video.
 Now that the model is trained. I will to test it using images that the model has never seen before.
 
-[linkname](https://youtu.be/r_jMNsYlsbY)
-<iframe width="560" height="315" src="https://www.youtube.com/embed/r_jMNsYlsbY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+[![LIVE DEMO](https://i.imgur.com/SIwF0UX.jpg)](https://youtu.be/r_jMNsYlsbY)
 
 ### Part 2: Tensorflow Object Detection API
 The real world is very busy with multiple activities happening at the same time.  We are not just classifying 1x single object, rather multiple overlapping objects with different backgrounds. And in order to see the relationship between different objects, in a single photo, we need to draw a bounding boxes around them. Therefore, our CNN had to predict, many different labels as well as their X Y coordinates of its respective bounding box, all at once.
