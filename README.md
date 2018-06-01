@@ -19,6 +19,8 @@ I will break this up into 4 parts:
 ![alt text](https://i.imgur.com/dj6ZReY.jpg)
 
 ### Part 1) Image classification using Keras
+Reference to : https://github.com/noelcodes/Capstone-Project/blob/master/CNN_train-12Classes.ipynb
+
 Before I jump into the coding. There is a few concept you had to know.
 - Images are matrix of pixel values. 
 
@@ -124,11 +126,15 @@ This 1st diagram shows the confusion metrics. Each category, we test the model w
 ![alt text](https://i.imgur.com/PPpyX85.jpg)  
 
 ##### Testing the saved model. Live demo. Recorded on video.
+Reference to : https://github.com/noelcodes/Capstone-Project/blob/master/CNN_train-12Classes.ipynb/Demo-12Classes.ipynb
+
 Now that the model is trained. I will to test it using images that the model has never seen before.
 
 [![LIVE DEMO](https://i.imgur.com/bJixWTi.jpg)](https://youtu.be/r_jMNsYlsbY)
 
 ### Part 2: Tensorflow Object Detection API
+Reference to: https://github.com/noelcodes/Capstone-Project/blob/master/object_detection_noel.ipynb
+
 The real world is very busy with multiple activities happening at the same time.  We are not just classifying 1x single object, rather multiple overlapping objects with different backgrounds. And in order to see the relationship between different objects, in a single photo, we need to draw a bounding boxes around them. Therefore, our CNN had to predict, many different labels as well as their X Y coordinates of its respective bounding box, all at once.
 
 This is actually a very complex operation, which requires tons of coding. Fortunately, Google came up with an open sourse API called Tensorflow Object Detection. I have applied this API into this static image. As you can see, it performs rather well, identifying the table, bottle, wine glass, and the person.
@@ -172,6 +178,8 @@ I have a Windows 10, GTX1060 GPU, 16GB DDR3, Intel i&-7700HQ 2.8GHz. You don't n
 - If it doesn't work, copy the codes in this github, object_detection_noel.ipynb , paste on exact same folder. Run it!
 
 ### Part 3: Now let's use OpenCV to stream videos.
+Reference to: https://github.com/noelcodes/Capstone-Project/blob/master/object_detection/Object_detection_webcam.py
+
 Videos are actually streams of images. This is where OpenCV comes in.
 Run "object_detection_webcam.py" in terminal instead of notebook for stability.
 
@@ -195,13 +203,16 @@ There is a problem. The classification + object detection on video stream is per
 ![alt text](https://i.imgur.com/cX1WlVR.jpg)
 
 ### Part 4: Put everything together.
+Reference to: https://github.com/noelcodes/Capstone-Project/blob/master/object_detection/Object_detection_webcam.py
+After the steps below, it will replace the Inference Graph. 
+
 If you have not spotted, for Part 2 & 3, the model I was using is a pre-trained model. Where is my 12x classes of household products which I trained in Part 1? Well, I'm not going to use the model in Part 1 created via Keras, because accuracy is only 85%. Not bad, but not good enough. That's why I do Part 2 and 3, where tensorflow object detection api allows fine tune the existing pre-train model. There are a list of model selection from [model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md)
 
 Some of the most relevant system types today are Faster R-CNN, R-FCN, Multibox Single Shot Detector (SSD) and YOLO (You Only Look Once).
 
 ![alt text](https://i.imgur.com/AK9BXTu.jpg)
 
-I have choosen Faster R-CNN, because based on the chart above, although it is computational expensive, but it can achieve high accuracy. As you can see that the architecture is extremely complex. 
+Originally I used Multibox Single Shot Detector (SSD), but accuracy is not good, even thought it is fast. Here's I have choosen Faster R-CNN, because based on the chart above, although it is computational expensive, but it can achieve high accuracy. As you can see that the architecture is extremely complex. 
 
 ![alt text](https://i.imgur.com/tezXUpC.png)
 
@@ -311,9 +322,12 @@ You are looking at Fast RCNN model on my custom image and labels and some mock-u
 ## My project is complete here. YOLO below is extra.
 
 ### Part 5: YOLO (You Only Look Once)
-While working on Part 4, let's have a gimps of Yolo. What a name!! 
+Reference : https://github.com/noelcodes/Capstone-Project/blob/master/yolo_noel/darkflow/yolo_noel.py
+
+Let's have a gimps of Yolo. What a name!! 
 For details you can read the paper here https://arxiv.org/abs/1506.02640. 
-But the general idea is: 
+Yolo is very fast, outperformed any other method we have discussed, mainly because it detects the object location in a smarter way. 
+The general idea is: 
 - The input image is divided into an S × S grid. 
 - For each grid cell predicts B bounding boxes, confidence for those boxes and C class probabilities.
 - These predictions are encoded as an S x S x (B*5+C) tensor.
@@ -328,6 +342,8 @@ Click here for the link to [Darknet](https://pjreddie.com/darknet/yolo/).
 But we are died hard python fan. Luckily some one translated darknet to a Tensorflow version, hence the name darkflow. You can clone it from this [Darkflow link](https://github.com/thtrieu/darkflow).
 Follow thru the installation guide written there. Basically it uses Cython language to bridge between C to Python. Then run my code 'yolo_noel.py" in terminal. 
 
+I did not have time to use my custom image on this, preparation of the labelmaps and xml format is slightly different from the tensorflow method. I also noticed that the accuracy of Yolo model is not as good as Faster R-CNN, so I did not bother to waste time on it. Howevver, it is still possible to use custom images. Instruction is on the same link above. 
+
 For advertising tagging purpose, we just need to replace labels with resepctive slogan/promotions. Example:
 ```
 label = result['label']
@@ -336,6 +352,7 @@ if label == 'laptop':
 elif label == 'Wine':
      label='Buy 1 Wine, Get 1 Free'
 ```     
+
 ![alt text](https://i.imgur.com/F0GhB4D.jpg)
 
 ## Conclusion:
