@@ -314,7 +314,7 @@ Run it in terminal.
 
 ##### Demo on 12x household products.
 
-![alt text](https://i.imgur.com/hixzVfA.gifv)  
+![alt text](https://i.imgur.com/hixzVfA.gif)  
 
 You are looking at Fast RCNN model on my custom image and labels and some mock-up advertising prices and promotion.
 
