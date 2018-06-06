@@ -14,7 +14,6 @@ I will break this up into 4 parts:
 2) Transfer Learning + Tensorflow Object Detection API. This locate the object and draws the bounding box around it.
 3) OpenCV for video streaming on webcam.
 4) Put all the above together + Demo.
-5) Bonus - Yolo demonstration
 
 ![alt text](https://i.imgur.com/dj6ZReY.jpg)
 
@@ -320,41 +319,6 @@ You are looking at Fast RCNN model on my custom image and labels and some mock-u
 
 
 ## My project is complete here. YOLO below is extra.
-
-### Part 5: YOLO (You Only Look Once)
-Reference : https://github.com/noelcodes/Capstone-Project/blob/master/yolo_noel/darkflow/yolo_noel.py
-
-Let's have a gimps of Yolo. What a name!! 
-For details you can read the paper here https://arxiv.org/abs/1506.02640. 
-Yolo is very fast, outperformed any other method we have discussed, mainly because it detects the object location in a smarter way. 
-The general idea is: 
-- The input image is divided into an S × S grid. 
-- For each grid cell predicts B bounding boxes, confidence for those boxes and C class probabilities.
-- These predictions are encoded as an S x S x (B*5+C) tensor.
-- Finally set a threhold level of 30% of confidence prediction, this removes all low confidence level boxes, leaving only the high predicted ones.
-
-![alt text](https://i.imgur.com/EuMMiub.jpg)   
-
-#### Installation
-Yolo is written in Darknet, Open Source Neural Networks in C, for its speed.
-Click here for the link to [Darknet](https://pjreddie.com/darknet/yolo/).
-
-But we are died hard python fan. Luckily some one translated darknet to a Tensorflow version, hence the name darkflow. You can clone it from this [Darkflow link](https://github.com/thtrieu/darkflow).
-Follow thru the installation guide written there. Basically it uses Cython language to bridge between C to Python. Then run my code 'yolo_noel.py" in terminal. 
-
-##### Custom images + Demo
-I did not have time to use my custom image on this, preparation of the labelmaps and xml format is slightly different from the tensorflow method. I also noticed that the accuracy of Yolo model is not as good as Faster R-CNN, so I did not bother to waste time on it. However, it is still possible to use custom images. Instruction is on the same link above. 
-
-For advertising tagging purpose, we just need to replace labels with resepctive slogan/promotions. Example:
-```
-label = result['label']
-if label == 'laptop':
-     label='Laptop now $999'
-elif label == 'Wine':
-     label='Buy 1 Wine, Get 1 Free'
-```     
-
-![alt text](https://i.imgur.com/F0GhB4D.jpg)
 
 ## Conclusion:
 I have tried train these images via keras method on my own model design. The result is not perfect with just 80% accuracy. Most likely it is due to the simple artchitecture design. Given more time, I should be able to create a better CNN design. However, it is only thru this exercise, I learnt about what each layers in Keras are doing, and appreciated it. Then of course the more logical method is to train the images via transfer learning, i.e using a pre-trained model. I'm using the faster R-CNN model to train my images, and the result is very good. In order to spice up this project, I have also try out their tensorflow's object detection api. This helps to locate the XY coordinates, draw the bounding boxes, and perform multiple classification. Then with the help of OpenCV, treating an video as streams of images for recongnition (while loop), the project becomes very interesting. Just a simple tagging the labels to an advertising slogon, give us an idea the "use case" for such technique. The same technique can be use in Health care, to detect cancer cells in a tissue.  Or in Education to teach children different species of animals. Or in Semiconductor where I come from, to detect defects in a wafer.  Self driving car and surveillance. And of course back to my project, Advertising. Thank you for your time. 
