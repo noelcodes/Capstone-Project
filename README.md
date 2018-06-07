@@ -10,8 +10,8 @@ Many of us do shopping regularly. Wouldn't it be awesome if you could pick up yo
 
 ### Overview
 I will break this up into 4 parts:
-1) Image classification using Keras. This trains a model to classify all 20,000 images of household product into its labels.
-2) Transfer Learning + Tensorflow Object Detection API. This locate the object and draws the bounding box around it.
+1) Build CNN from scratch, Image classification using Keras. This trains a model to classify all 20,000 images of household product into its labels.
+2) Build CNN via Transfer Learning + Tensorflow Object Detection API. This locate the object and draws the bounding box around it.
 3) OpenCV for video streaming on webcam.
 4) Put all the above together + Demo.
 
