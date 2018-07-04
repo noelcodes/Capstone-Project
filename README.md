@@ -139,7 +139,9 @@ Now that the model is trained. I will to test it using images that the model has
 ### Part 2: Tensorflow Object Detection API
 Reference to: https://github.com/noelcodes/Capstone-Project/blob/master/object_detection_noel.ipynb
 
-The real world is very busy with multiple activities happening at the same time.  We are not just classifying 1x single object, rather multiple overlapping objects with different backgrounds. And in order to see the relationship between different objects, in a single photo, we need to draw a bounding boxes around them. Therefore, our CNN had to predict, many different labels as well as their X Y coordinates of its respective bounding box, all at once.
+In Part 1, I have bulit CNN to classify 12x classes. I have a week left before project deadline. I can choose to stop here, or explore other techniques. I feel that I should try out Object Detection.
+
+The real world is very busy with multiple activities happening at the same time.  I want not just classifying 1x single object, rather multiple overlapping objects with different backgrounds. And in order to see the relationship between different objects, in a single photo, we need to draw a bounding boxes around them. Therefore, our CNN had to predict, many different labels as well as their X Y coordinates of its respective bounding box, all at once.
 
 This is actually a very complex operation, which requires tons of coding. I left 1 week to deadline, so not enough time. Then I came across Google's open sourse API called Tensorflow Object Detection. I have applied this API into this static image. As you can see, it performs rather well, identifying the table, bottle, wine glass, and the person.
 
@@ -148,7 +150,7 @@ This is actually a very complex operation, which requires tons of coding. I left
 The API also made it easy for me to train custom images on pre-trained models. I choose Faster-RCNN beacause of its accuracy. I wanted to use the keras model which was trained in Part 1, but the API did not like H5 format as weights, so I did not use it. In order to train custom images on Faster-RCNN, a couple of extra steps needed to do. I will explain in details in Part 4.
 
 
-##### Installation
+##### API Installation
 If you are lazy to read documentations and just want to get it up and running, you are in luck. there's a no bullshit, just follow installation guide.
 I have a Windows 10, GTX1060 GPU, 16GB DDR3, Intel i&-7700HQ 2.8GHz. You don't need to be the same specs as mine, just windows 10 and a decent GPU will still works. Software side, I'm using VS2015, Nvdia 9.0 and Cudnn 7. Install them if you want to use GPU, which is w...way faster.
 ```
@@ -177,7 +179,7 @@ I have a Windows 10, GTX1060 GPU, 16GB DDR3, Intel i&-7700HQ 2.8GHz. You don't n
 23) (tensorflow1) C:\tensorflow1\models\research> python setup.py install
 ```
 
-##### Let's do object detection.
+##### Let's do object detection on static image.
 - Go to path models/research/object_detection/test_images/ , paste your image there and rename image1.jpg.
 - Open models/research/object_detection/object_detection_tutorial.ipynb in jupyter notebook.
 - Run it, warning it takes a while.
@@ -211,7 +213,7 @@ Calling cv2 from OpenCV, VideoCapture(0) means switch ON webcam. If you have ano
 Reference to: https://github.com/noelcodes/Capstone-Project/blob/master/object_detection/Object_detection_webcam.py
 After the steps below, it will replace the Inference Graph. 
 
-If you have not spotted, for Part 2 & 3, the model I was using is a pre-trained model. Where is my 12x classes of household products which I trained in Part 1? Well, I'm not going to use the model in Part 1 created via Keras, because accuracy is only 85%. Not bad, but not good enough. That's why I do Part 2 and 3, where tensorflow object detection api allows fine tune the existing pre-train model. There are a list of model selection from [model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md)
+If you have not spotted, for Part 2 & 3, the model I was using is a pre-trained model. Where is my 12x classes of household products which I trained in Part 1? Well, I'm not going to use the model in Part 1 created via Keras, because accuracy is only 85%. Not bad, but not good enough. The API also do not like Keras's H5 weights. That's why I do Part 2 and 3, where tensorflow object detection api allows fine tune the existing pre-train model. There are a list of model selection from [model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md)
 
 Some of the most relevant system types today are Faster R-CNN, R-FCN, Multibox Single Shot Detector (SSD) and YOLO (You Only Look Once).
 
