@@ -322,9 +322,6 @@ Run it in terminal.
 
 You are looking at Fast RCNN model on my custom image and labels and some mock-up advertising prices and promotion.
 
-
-## My project is complete here. YOLO below is extra.
-
 ## Conclusion:
 I have tried train these images via keras method on my own model design. The result is not perfect with just 80% accuracy. Most likely it is due to the simple artchitecture design. Given more time, I should be able to create a better CNN design. However, it is only thru this exercise, I learnt about what each layers in Keras are doing, and appreciated it. Then of course the more logical method is to train the images via transfer learning, i.e using a pre-trained model. I'm using the faster R-CNN model to train my images, and the result is very good. In order to spice up this project, I have also try out their tensorflow's object detection api. This helps to locate the XY coordinates, draw the bounding boxes, and perform multiple classification. Then with the help of OpenCV, treating an video as streams of images for recongnition (while loop), the project becomes very interesting. Just a simple tagging the labels to an advertising slogon, give us an idea the "use case" for such technique. The same technique can be use in Health care, to detect cancer cells in a tissue.  Or in Education to teach children different species of animals. Or in Semiconductor where I come from, to detect defects in a wafer.  Self driving car and surveillance. And of course back to my project, Advertising. Thank you for your time. 
 
