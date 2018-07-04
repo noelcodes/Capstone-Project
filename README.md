@@ -205,8 +205,6 @@ cap = cv2.VideoCapture(0)
 ```
 Calling cv2 from OpenCV, VideoCapture(0) means switch ON webcam. If you have another camera, try change to VideoCapture(1). Next cap.read() separate the video into 2 variable, a True/False (ret) meaning whether there is video or not, and the other variable is a static image (image_np). The idea is to put this static image into Object Detection API in Part2 for prediction. Since this is in video streaming, we are feeding streams of images for multiple classification continuously. Is this fun??
 
-There is a problem. The classification + object detection on video stream is performing rather slow, even though I am running on GPU. This is because we are using "ssd_mobilenet_v1_coco_11_06_2017" model. It is using the technique called SSD: Single Shot MultiBox Detector. [https://arxiv.org/abs/1512.02325]. It is ok, but I think YOLO is much faster. 
-
 ![alt text](https://i.imgur.com/cX1WlVR.jpg)
 
 ### Part 4: Put everything together.
