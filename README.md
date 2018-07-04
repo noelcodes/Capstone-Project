@@ -141,9 +141,12 @@ Reference to: https://github.com/noelcodes/Capstone-Project/blob/master/object_d
 
 The real world is very busy with multiple activities happening at the same time.  We are not just classifying 1x single object, rather multiple overlapping objects with different backgrounds. And in order to see the relationship between different objects, in a single photo, we need to draw a bounding boxes around them. Therefore, our CNN had to predict, many different labels as well as their X Y coordinates of its respective bounding box, all at once.
 
-This is actually a very complex operation, which requires tons of coding. Fortunately, Google came up with an open sourse API called Tensorflow Object Detection. I have applied this API into this static image. As you can see, it performs rather well, identifying the table, bottle, wine glass, and the person.
+This is actually a very complex operation, which requires tons of coding. I left 1 week to deadline, so not enough time. Then I came across Google's open sourse API called Tensorflow Object Detection. I have applied this API into this static image. As you can see, it performs rather well, identifying the table, bottle, wine glass, and the person.
 
 ![alt text](https://i.imgur.com/DBui9Xl.jpg) 
+
+The API also made it easy for me to train custom images on pre-trained models. I choose Faster-RCNN beacause of its accuracy. I wanted to use the keras model which was trained in Part 1, but the API did not like H5 format as weights, so I did not use it. In order to train custom images on Faster-RCNN, a couple of extra steps needed to do. I will explain in details in Part 4.
+
 
 ##### Installation
 If you are lazy to read documentations and just want to get it up and running, you are in luck. there's a no bullshit, just follow installation guide.
