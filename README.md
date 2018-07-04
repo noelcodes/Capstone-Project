@@ -4,8 +4,8 @@
 #### Technique : Image Classification using Keras + Tensorflow Object Detection API + OpenCV + Faster-RCNN
 ![alt text](https://i.imgur.com/0y1SB7u.jpg)
 
-#### Here's a video of the final product where I showcase during Meet and Greet hiring event. 
-[![LIVE DEMO](https://i.imgur.com/UDyujPp.jpg)](https://youtu.be/CwzLjc1-kj8)
+#### Here's a VIDEO of the final product where I showcase during Meet and Greet hiring event. 
+[![LIVE DEMO](https://i.imgur.com/H5zcMCe.jpg)](https://youtu.be/CwzLjc1-kj8)
 
 
 ### Introduction:
@@ -318,7 +318,7 @@ Run it in terminal.
 
 ##### Demo on 12x household products.
 
-[![LIVE DEMO](https://i.imgur.com/UDyujPp.jpg)](https://youtu.be/CwzLjc1-kj8)
+[![LIVE DEMO](https://i.imgur.com/H5zcMCe.jpg)](https://youtu.be/CwzLjc1-kj8)
 
 You are looking at Fast RCNN model on my custom image and labels and some mock-up advertising prices and promotion.
 
