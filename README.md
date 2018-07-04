@@ -1,8 +1,13 @@
 # [Home Page](https://noelcodes.github.io/)
 # Capstone-Project
 ### Title: Enhance shopping experience thru product image recognition
-#### Technique : Image Classification using Keras + Tensorflow Object Detection API + OpenCV + Yolo
+#### Technique : Image Classification using Keras + Tensorflow Object Detection API + OpenCV + Faster-RCNN
 ![alt text](https://i.imgur.com/0y1SB7u.jpg)
+
+#### Here's a video of the final product where I showcase during Meet and Greet hiring event. 
+[![LIVE DEMO](https://i.imgur.com/UDyujPp.jpg)](https://youtu.be/CwzLjc1-kj8)
+
+
 ### Introduction:
 Many of us do shopping regularly. Wouldn't it be awesome if you could pick up your phone, switch on the camera app, scan items around the shopping mall, to recognize the product of interest and displays its price and discounts in real-time? My project is about image classification of 12x household products and classified according to its labels then tag this labels to its advertising slogan. The finished project had to locate the product items thru an image or video stream on webcam, draw a bounding box around them, to display "made-up" prices and discounts.
 
